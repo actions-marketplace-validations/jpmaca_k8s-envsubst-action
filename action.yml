@@ -1,0 +1,19 @@
+name: 'YAML Substitute'
+description: 'Replace a k8s yaml deployment with the '
+inputs:
+  env-file:  
+    description: 'Additional variables to set'
+    default: ''
+  yaml-file:  
+    description: 'The yaml file to substitute'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - id: substitute
+    - run: ${{ github.action_path }}/substitute.sh -y ${{inputs.yaml-file}} -f ${{inputs.env-file}}
+      shell: bash
+      if: ${{inputs.env-file != ''}}
+    - run: ${{ github.action_path }}/substitute.sh -y ${{inputs.yaml-file}}
+      shell: bash
+      if: ${{inputs.env-file == ''}}
