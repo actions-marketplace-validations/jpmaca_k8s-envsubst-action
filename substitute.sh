@@ -1,11 +1,8 @@
-while getopts y:v: flag
+while getopts y: flag
 do
     case "${flag}" in
         y) yaml=${OPTARG};;
-        v) variables=${OPTARG};;
     esac
 done
-
-cat $variables >> $GITHUB_ENV
 
 envsubst < $yaml | kubectl apply -f -
