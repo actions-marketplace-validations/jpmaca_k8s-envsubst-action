@@ -10,10 +10,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - id: substitute
     - run: ${{ github.action_path }}/substitute.sh -y ${{inputs.yaml-file}} -f ${{inputs.env-file}}
-      shell: bash
       if: ${{inputs.env-file != ''}}
     - run: ${{ github.action_path }}/substitute.sh -y ${{inputs.yaml-file}}
-      shell: bash
       if: ${{inputs.env-file == ''}}
