@@ -11,7 +11,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/substitute.sh -y ${{inputs.yaml-file}} -f ${{inputs.env-file}}
+    - run: ${{ github.action_path }}/substitute.sh -y ${{inputs.yaml-file}} -v ${{inputs.env-file}}
       if: ${{inputs.env-file != ''}}
       shell: bash
     - run: ${{ github.action_path }}/substitute.sh -y ${{inputs.yaml-file}}
