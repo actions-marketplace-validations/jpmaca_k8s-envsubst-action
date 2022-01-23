@@ -4,6 +4,7 @@ inputs:
   env-file:  
     description: 'Additional variables to set'
     default: ''
+    required: false
   yaml-file:  
     description: 'The yaml file to substitute'
     required: true
@@ -12,5 +13,7 @@ runs:
   steps:
     - run: ${{ github.action_path }}/substitute.sh -y ${{inputs.yaml-file}} -f ${{inputs.env-file}}
       if: ${{inputs.env-file != ''}}
+      shell: bash
     - run: ${{ github.action_path }}/substitute.sh -y ${{inputs.yaml-file}}
       if: ${{inputs.env-file == ''}}
+      shell: bash
