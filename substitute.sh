@@ -1,4 +1,4 @@
-while getopts u:a:f: flag
+while getopts y:v: flag
 do
     case "${flag}" in
         y) yaml=${OPTARG};;
